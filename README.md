@@ -121,3 +121,7 @@ done
 - NTS（Network Time Security）未实现，服务器配置页的 NTS 开关为禁用态并标注「暂不支持」。
 - 需要 root 权限的 `clock_settime` / `adjtime` 未被调用，客户端不回写本机时钟。
 - 公网 NTP 可达性取决于网络环境，`time.windows.com` 在部分国内网络长期无响应，界面会如实显示「无响应」并降级到其他源。
+
+## 彩蛋
+
+标题栏左上角的时钟图标，连点 5 次试试。

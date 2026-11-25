@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import TimeSync
 
 Rectangle {
@@ -7,6 +8,8 @@ Rectangle {
     signal minimizeRequested()
     signal maximizeRequested()
     signal closeRequested()
+
+    property int eggClicks: 0
 
     color: Theme.card
 
@@ -26,12 +29,32 @@ Rectangle {
         color: Theme.green
 
         Text {
+            id: logoGlyph
             anchors.centerIn: parent
             text: "◷"
             color: "#FFFFFF"
             font.pixelSize: 15
             font.weight: Font.DemiBold
         }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                bar.eggClicks++
+                eggReset.restart()
+                if (bar.eggClicks >= 5) {
+                    bar.eggClicks = 0
+                    eggReset.stop()
+                    easterEgg.open()
+                }
+            }
+        }
+    }
+
+    Timer {
+        id: eggReset
+        interval: 2000
+        onTriggered: bar.eggClicks = 0
     }
 
     Text {
@@ -100,5 +123,105 @@ Rectangle {
         }
         onDoubleClicked: bar.maximizeRequested()
         z: -1
+    }
+
+    Popup {
+        id: easterEgg
+        width: 420
+        modal: true
+        focus: true
+        padding: 0
+        anchors.centerIn: Overlay.overlay
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+        background: Rectangle {
+            color: Theme.card
+            radius: 14
+            border.width: 1
+            border.color: Theme.border
+        }
+
+        contentItem: Item {
+            implicitWidth: 420
+            implicitHeight: 276
+
+            Rectangle {
+                x: 24
+                y: 24
+                width: 48
+                height: 48
+                radius: 12
+                color: Theme.green
+
+                Text {
+                    anchors.centerIn: parent
+                    text: "◷"
+                    color: "#FFFFFF"
+                    font.pixelSize: 26
+                    font.weight: Font.DemiBold
+
+                    RotationAnimation on rotation {
+                        from: 0
+                        to: 360
+                        duration: 1200
+                        running: easterEgg.opened
+                    }
+                }
+            }
+
+            Text {
+                x: 88
+                y: 29
+                text: "彩蛋 · 时差 0.000 s"
+                color: Theme.ink
+                font.pixelSize: 16
+                font.weight: Font.DemiBold
+            }
+
+            Text {
+                x: 88
+                y: 53
+                text: "TimeSync 的小心思"
+                color: Theme.muted
+                font.pixelSize: 11
+            }
+
+            Rectangle {
+                x: 24
+                y: 84
+                width: 372
+                height: 1
+                color: Theme.rowLine
+            }
+
+            Text {
+                x: 24
+                y: 100
+                width: 372
+                text: "时钟是无人机地面站的第一条链路 —— 偏差 1 ms，飞控就要多算一帧。\n\n这里的每一个毫秒，都是 UDP/123 上真实探测回来的，没有 mock。"
+                color: Theme.ink
+                font.pixelSize: 12
+                lineHeight: 1.25
+                wrapMode: Text.WordWrap
+            }
+
+            Text {
+                x: 24
+                y: 196
+                text: "— freeor · Qt 6 / QML / SNTP v4"
+                color: Theme.green
+                font.pixelSize: 11
+                font.weight: Font.Medium
+            }
+
+            AppButton {
+                x: 24
+                y: 224
+                width: 116
+                text: "收下彩蛋"
+                primary: true
+                onClicked: easterEgg.close()
+            }
+        }
     }
 }
