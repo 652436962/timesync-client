@@ -143,7 +143,7 @@ Rectangle {
 
         contentItem: Item {
             implicitWidth: 420
-            implicitHeight: 276
+            implicitHeight: 286
 
             Rectangle {
                 x: 24
@@ -207,16 +207,24 @@ Rectangle {
 
             Text {
                 x: 24
-                y: 196
-                text: "— freeor · Qt 6 / QML / SNTP v4"
+                y: 190
+                text: "— freeor · 嵌入式 / Qt / 无人机地面站"
                 color: Theme.green
                 font.pixelSize: 11
                 font.weight: Font.Medium
             }
 
+            Text {
+                x: 24
+                y: 207
+                text: "业余爱好：在 Deepin 上把时间对到 1 ms 以内"
+                color: Theme.muted
+                font.pixelSize: 11
+            }
+
             AppButton {
                 x: 24
-                y: 224
+                y: 236
                 width: 116
                 text: "收下彩蛋"
                 primary: true
