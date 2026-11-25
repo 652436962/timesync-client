@@ -143,7 +143,7 @@ Rectangle {
 
         contentItem: Item {
             implicitWidth: 420
-            implicitHeight: 286
+            implicitHeight: 294
 
             Rectangle {
                 x: 24
@@ -181,7 +181,7 @@ Rectangle {
             Text {
                 x: 88
                 y: 53
-                text: "TimeSync 的小心思"
+                text: "关于时钟的两条冷知识"
                 color: Theme.muted
                 font.pixelSize: 11
             }
@@ -198,7 +198,7 @@ Rectangle {
                 x: 24
                 y: 100
                 width: 372
-                text: "时钟是无人机地面站的第一条链路 —— 偏差 1 ms，飞控就要多算一帧。\n\n这里的每一个毫秒，都是 UDP/123 上真实探测回来的，没有 mock。"
+                text: "北京时间并不在北京产生 —— 国家授时中心在陕西临潼。\n\nNTP 的 32 位秒计数会在 2036 年 2 月 7 日回绕，和千年虫是同款问题。"
                 color: Theme.ink
                 font.pixelSize: 12
                 lineHeight: 1.25
@@ -207,7 +207,7 @@ Rectangle {
 
             Text {
                 x: 24
-                y: 190
+                y: 198
                 text: "— freeor · 嵌入式 / Qt / 无人机地面站"
                 color: Theme.green
                 font.pixelSize: 11
@@ -216,7 +216,7 @@ Rectangle {
 
             Text {
                 x: 24
-                y: 207
+                y: 215
                 text: "业余爱好：在 Deepin 上把时间对到 1 ms 以内"
                 color: Theme.muted
                 font.pixelSize: 11
@@ -224,7 +224,7 @@ Rectangle {
 
             AppButton {
                 x: 24
-                y: 236
+                y: 244
                 width: 116
                 text: "收下彩蛋"
                 primary: true
